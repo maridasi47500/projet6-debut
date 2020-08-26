@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+<nav>
+<ul>
+<li>
+    <h1><a href="/">Accueil</a></h1>
+</li>
+</ul>
+
+<ul>
+<li>
+<a href="#" onclick="return false;" id="co"><%if (coadmin) {%>Déconnexion<%}else{%>Connexion/inscription<%};%></a>
+</li>
+</ul>
+
+<ul>
+<li>
+    <h1><%= title %></h1>
+</li>
+</ul>
+</nav>
+<main>
+<section class="administration-places">
+<%if(places && places.length > 0){%>
+<%places.forEach(function(place){%>
+<form onsubmit="return false;">
+<p>Name: <%=place.name%></p>
+<p>Location: <%=place.city%>, <%=place.country%></p>
+<p>Description: <%=place.description%></p>
+<div>
+<input value="<%=place._id%>" type="hidden" name="place_id" id="" readonly/>
+</div>
+
+<div>
+<input value="valider cet endroit" type="submit" name="valider"/>
+</div>
+
+</form>
+<%});%>
+<%}else{%>
+<p>aucun lieu à valider.</p>
+<%};%>
+
+</section>
+<section class="destroy-all">
+
+<form id="drop-all" onsubmit="return false;">
+<input value="Destroy everything" type="submit" name="submit"/>
+</form>
+</section>
+</main>
+<div class="successful"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="/javascripts/ad.js"></script>
+
+  </body>
+</html>
+

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+<nav>
+<ul>
+<li>
+<a href="/">Accueil</a>
+</li>
+</ul>
+
+<ul>
+<li>
+<a href="#" onclick="return false;" id="co"><%if (co) {%>Déconnexion<%}else{%>Connexion/inscription<%};%></a>
+</li>
+</ul>
+
+
+<ul>
+<li>
+    <h1><%= title %></h1>
+</li>
+</ul>
+</nav>
+<main>
+<section class="lieu">
+<p><%= u.name %></p>
+<p><%= u.city %>, <%=u.country%></p>
+<p><%= u.description %></p>
+<p></p>
+<p></p>
+<p></p>
+
+</section>
+<section class="recommendations">
+<%u.recommendations.forEach(function(recom){%>
+<p data-userrecommend="<%=recom.user_id%>"><3 de </p>
+<%});%>
+</section>
+<section class="comments">
+<%u.comments.forEach(function(com){%>
+<p data-usercomment="<%=com.user_id%>"><%= com.content%></p>
+<%});%>
+</section>
+
+<%if(co){%>
+<section class="recommendation-place">
+<p>Recommendez cet endroit !</p>
+<form onsubmit="return false;" id="recommend">
+<input type="hidden" value="<%=uid%>" name="user_id">
+<input type="hidden" value="<%=pid%>" name="place_id">
+<input type="submit" value="recommender cet endroit"/>
+</form>
+<div class="successful-recommend"></div>
+</section>
+
+
+<section class="comment-place">
+<p>Commentez cet endroit !</p>
+
+<form onsubmit="return false;" id="comment">
+<input type="hidden" value="<%=uid%>" name="user_id">
+<input type="hidden" value="<%=pid%>" name="place_id">
+<label for="content">Description:</label>
+<textarea id="content" name="content"
+          rows="40" cols="40" value="">
+
+ici j'ai passé de bonnes vacances
+</textarea>
+<input type="submit" value="commenter cet endroit"/>
+</form>
+
+</section>
+<%};%>
+</main>
+<div class="successful"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="/javascripts/rec.js"></script>
+  </body>
+</html>

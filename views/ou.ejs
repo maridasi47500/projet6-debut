@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+<nav>
+<ul>
+<li>
+    <a href="/">Accueil</a>
+</li>
+</ul>
+
+<ul>
+<li>
+<a href="#" onclick="return false;" id="co"><%if (co) {%>Déconnexion<%}else{%>Connexion/inscription<%};%></a>
+</li>
+</ul>
+
+
+<ul>
+<li>
+    <h1><%= title %></h1>
+</li>
+</ul>
+<%if(ad){%>
+<ul>
+<li>
+<a href="/placesadmin">Administration des lieux</a>
+</li>
+</ul>
+<%};%>
+
+</nav>
+<main>
+<section class="lieu">
+<h1>Créez un nouveau lieu</h1>
+
+<form onsubmit="return false;">
+<div>
+<label for="name">Name of the place:</label>
+<input value="" type="text" name="name" id="name"/>
+</div>
+<div>
+<label for="city">City:</label>
+<input value="" type="text" name="city" id="city"/>
+</div>
+<div>
+<label for="count">Country:</label>
+<input value="" type="text" name="count" id="count"/>
+</div>
+
+<div>
+<label for="descr">Description:</label>
+<textarea id="descr" name="descr"
+          rows="40" cols="40" value="">
+
+petit restaurant vendant des raviolis à xilingyilu
+</textarea>
+</div>
+
+<div>
+<input value="envoyer" type="submit" name="envoyer" id="envoyer"/>
+</div>
+
+</form>
+
+</section>
+</main>
+<div class="successful"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="/javascripts/ou.js"></script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+<nav>
+<ul>
+<li>
+    <h1><a href="/">Accueil</a></h1>
+</li>
+</ul>
+
+<ul>
+<li>
+<a href="#" onclick="return false;" id="co"><%if (co) {%>Déconnexion<%}else{%>Connexion/inscription<%};%></a>
+</li>
+</ul>
+
+<ul>
+<li>
+    <h1><%= title %></h1>
+</li>
+</ul>
+</nav>
+<main>
+<%if (u){%>
+    <p>Welcome, <%= u.firstname %></p>
+<section class="ed">
+<form onsubmit="return false;" data-id="<%= uid%>">
+<h1>Register</h1>
+<div>
+<label for="fname">first name:</label>
+<input value="<%= u.firstname %>" type="text" name="fname" id="fname"/>
+</div>
+<div>
+<label for="lname">last name:</label>
+<input value="<%= u.lastname %>" type="text" name="lname" id="lname"/>
+</div>
+<div>
+<label for="email">email:</label>
+<input value="<%= u.email %>" type="email" name="email" id="email"/>
+</div>
+
+<div>
+<label for="pword">To change your password, enter a new password and confirm:</label>
+<input value="" type="password" name="pword" id="pword"/>
+</div>
+<div>
+<label for="pwordbis">confirm your password:</label>
+<input value="" type="password" name="pwordbis" id="pwordbis"/>
+</div>
+
+<div>
+<input value="envoyer" type="submit" name="envoyer" id="envoyer"/>
+</div>
+
+</form>
+
+</section>
+<%};%>
+</main>
+<div class="successful"></div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="/javascripts/ed.js"></script>
+  </body>
+</html>

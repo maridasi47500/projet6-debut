@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/accueil.css"/>
+  </head>
+  <body>
+<nav>
+<ul>
+<li>
+<a href="#" onclick="return false;" id="co"><%if (co) {%>Déconnexion<%}else{%>Connexion/inscription<%};%></a>
+</li>
+</ul>
+<%if (co) {%>
+<ul>
+<li>
+<a href="/users/<%= uid%>/edit">Editer mon profil</a>
+</li>
+</ul>
+<ul>
+<li>
+<a href="/places/new">Ajouter un nouveau lieu</a>
+</li>
+</ul>
+<%};%>
+<ul>
+	<form onsubmit="return false;" id="searchplace">
+		<li>
+			<input name="searchplace" id="searchaplace" type="text" value=""/>
+</li>
+<li>
+			<input name="chercherunlieu" id="chercher" type="submit" value="rechercher un endroit"/>
+</li>
+	</form>
+</ul>
+<ul>
+<li>
+    <h1><%= title %> - Tous les lieux - Tous les fils de discussion</h1>
+</li>
+</ul>
+</nav>
+<main>
+    <section class="places-list">
+        <%if(places){%>
+            <%places.forEach(function(place){%>
+                <div class="place">
+                    <a href="/places/<%=place._id%>">
+                    <p><%= place.name%></p>
+                    <p><%=place.city %>, <%=place.country%></p>
+                    </a>
+                </div>
+            <%});%>
+        <%};%>
+    </section>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="/javascripts/co.js"></script>
+  </body>
+</html>
