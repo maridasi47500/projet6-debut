@@ -35,6 +35,7 @@
 <p></p>
 
 </section>
+<%if (u && u.recommendations){%>
 <section class="recommendations">
 <%u.recommendations.forEach(function(recom){%>
 <p data-userrecommend="<%=recom.user_id%>"><3 de </p>
@@ -45,6 +46,7 @@
 <p data-usercomment="<%=com.user_id%>"><%= com.content%></p>
 <%});%>
 </section>
+<%};%>
 
 <%if(co){%>
 <section class="recommendation-place">

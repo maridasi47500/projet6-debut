@@ -24,6 +24,7 @@ $("#comment").submit(function(){
     type:'POST',
     dataType:'html',
     success:function(data){
+	console.log(data);
         if (data && data.substr(0,6) !== 'erreur') {
         $('.successful').html('Place commented successfully.');
          }
@@ -39,6 +40,7 @@ $("#recommend").submit(function(){
     type:'POST',
     dataType:'html',
     success:function(data){
+	console.log(data);
         if (data && data.substr(0,6) !== 'erreur') {
         $('.successful-recommend').html('Place recommended successfully.');
         }
@@ -52,6 +54,7 @@ $("[data-userrecommend], [data-usercomment]").each(function(){
     type:'GET',
     dataType:'html',
     success:function(data){
+	console.log(data);
         if (rec) {
             div.append(data);
         } else if (com) {
@@ -62,5 +65,4 @@ $("[data-userrecommend], [data-usercomment]").each(function(){
 });
 
 };
-
 

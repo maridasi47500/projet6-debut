@@ -21,7 +21,7 @@ var app = express();
 var ObjectId = require('mongodb').ObjectId; 
 
 //connect to mongodb
-const connection1=mongoose.connect('mongodb+srv://root:root@cluster0.8xn4k.mongodb.net/mydatabaseyooohooo?retryWrites=true&w=majority',
+const connection1=mongoose.connect("mongodb+srv://root:root@cluster0.8xn4k.mongodb.net/mydatabaseyooohooo?retryWrites=true&w=majority",
 {
 useNewUrlParser: true,
 useUnifiedTopology: true
@@ -262,8 +262,10 @@ app.get('/places/:id',function(req,res){
     var id = req.params.id,co=(req.session && req.session.loggedIn), id_mongo = (id ? ObjectId(id) : null),myplace;
     uid=co ? req.session.login.id : null;
 	let regexid=new RegExp(id);
-	            db.collections.places.aggregate([
-   { $addFields: { place_id: {$toString: "$_id"}} },
+
+            db.collections.places.aggregate([
+   { $addFields: { place_id: "$_id"} },
+   { $addFields: { placeid: {$toString:"$_id"} }},
 {
     $lookup:
                 {
@@ -281,26 +283,13 @@ app.get('/places/:id',function(req,res){
                     foreignField:"place_id",
                     as:"comments"
                 }
-},
-{
-    $project:{
-            _id:1,
-            name:"$name",
-            placeid:"$place_id",
-            city:"$city",
-            country:"$country",
-            recommendations:"$recommendations",
-            description:"$description",
-            comments:"$comments"
-        }
-},
-	{ $match: { _id: id_mongo}    }
-]).toArray((err,resp)=>{
+}]).toArray((err,resp)=>{
         console.log(resp);
         console.log(err);
       if (err) return res.send("erreur");
-        myplace=resp[0];
+        myplace=resp.filter(x=>x.placeid===id)[0];
 	console.log(myplace);
+	console.log(myplace.comments);
                 res.render('end',{u: myplace,title:myplace.name,co:co,pid:id,uid: uid});
 });
 
